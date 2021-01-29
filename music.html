@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSIC APP</title>
+    <link rel="stylesheet" href="music_style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="main">
+        <div class="music_container">
+            <h2 id="title">MEMORIES</h2>
+            <h3 id=artist>Maroon 5</h3>
+            <div class="img_container">
+                <img src="memory.jpg" alt="">
+            </div>
+            <audio src="mem.mp3" ></audio>
+            <div class="music_controls">
+                <i class="fas fa-backward" id="prev" title="Previous"></i>
+                <i class="fas fa-play main-button" id="play" title="Play"></i>
+                <i class="fas fa-forward" id="next" title="Next"></i>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        const music=document.querySelector('audio');
+        const img=document.querySelector('img');
+        const play=document.getElementById('play');
+        const artist=document.getElementById('artist');
+        const title=document.getElementById('title');
+        const prev=document.getElementById('prev');
+        const next=document.getElementById('next');
+        const songs=[{
+     name: "MEMORIES",
+     title:"mem",
+     artist:"Maroon 5",
+     img:"memory"
+ },
+ {
+     name: "Liggi",
+     title:"Liggi",
+     artist:"Ritviz",
+     img:"liggi1"
+ },
+ {
+     name: "SOCH NH SAKE",
+     title:"SOCH NH SAKE",
+     artist:"Arijit Singh",
+     img:"memory1"
+ },
+ {
+     name: "JUDAIYAAN",
+     title:"Judaiyan",
+     artist:"Darshan raval",
+     img:"darshan"
+ },
+ {
+     name: "sooraj",
+     title:"SOORAJ DOOBA KE YARO",
+     artist:"Arijit Singh",
+     img:"musics"
+ },
+ {
+     name: "Gale",
+     title:"GALE LAGANA HAI",
+     artist:"Neha Kakkar",
+     img:"gale2"
+ },
+ {
+     name: "Khyaal",
+     title:"KHYAAL RAKHA KR",
+     artist:"Neha Kakkar",
+     img:"khyaal"
+ },
+ {
+     name: "dheere",
+     title:"DHEERE DHEERE",
+     artist:"YO YO HONEY SINGH",
+     img:"dheere"
+ },
+ {
+     name: "Pach",
+     title:"PACHTAOGE",
+     artist:"Arijit Singh",
+     img:"pachtaoge"
+ },
+ {
+     name: "Titli",
+     title:"TITALIAAN",
+     artist:"Hardy Sindhu",
+     img:"titliyan"
+ },
+ {
+     name: "Burj",
+     title:"Burjkhaifa",
+     artist:"Akshay Kumar",
+     img:"burj"
+ },
+ 
+]
+
+        let isplay=true;
+ const playmusic=()=>{
+     music.play();
+     isplay=false;
+     play.classList.replace("fa-play","fa-pause");
+     img.classList.add('anime');
+ }
+ const pausemusic=()=>{
+     music.pause();
+     isplay=true;
+     play.classList.replace("fa-pause","fa-play");
+     img.classList.remove('anime');
+ }
+ play.addEventListener('click',()=>{
+     if(isplay){
+         playmusic();
+     }
+     else{
+         pausemusic();
+     }
+ })
+ //change the song
+ const loadsong=(songs)=>{
+ title.textContent=songs.title;
+ artist.textContent=songs.artist;
+ music.src=songs.name+".mp3";
+ img.src=songs.img+".jpg";
+ }
+
+songIndex=0;
+
+ const prevsong=()=>{
+     songIndex=(songIndex-1+songs.length)%songs.length;
+    loadsong(songs[songIndex]);
+    playmusic();
+}
+
+const nextsong=()=>{
+    songIndex=(songIndex+1)%songs.length;
+    loadsong(songs[songIndex]);
+    playmusic();
+}
+next.addEventListener("click",nextsong);
+prev.addEventListener("click",prevsong);
+
+    </script>
+</body>
+</html>
